@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automatizaciones | Asistente Qualtrics</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <nav class="bg-white shadow-md p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-xl font-bold text-blue-600">Asistente Qualtrics</h1>
+      <ul class="flex space-x-6 text-sm font-medium">
+        <li><a href="index.html" class="hover:text-blue-500">Inicio</a></li>
+        <li><a href="guia.html" class="hover:text-blue-500">Guía paso a paso</a></li>
+        <li><a href="automatizaciones.html" class="text-blue-600">Automatizaciones</a></li>
+        <li><a href="ejemplos.html" class="hover:text-blue-500">Ejemplos</a></li>
+        <li><a href="soporte.html" class="hover:text-blue-500">Soporte</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="container mx-auto p-6">
+    <h2 class="text-2xl font-bold text-blue-600 mb-4">Automatizaciones en Qualtrics</h2>
+    <p class="mb-6 text-gray-700">Scripts reutilizables para mejorar la eficiencia de tus encuestas.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Tarjeta de Script -->
+      <div class="bg-white rounded shadow p-4">
+        <h3 class="text-lg font-semibold text-blue-700">Validación de correo</h3>
+        <p class="text-sm text-gray-600 mb-2">Verifica que el campo contenga una dirección de correo válida.</p>
+        <pre class="bg-gray-100 p-2 rounded text-sm overflow-auto"><code>Qualtrics.SurveyEngine.addOnload(function() {
+  this.questioninput.setAttribute("pattern", ".+@.+\\..+");
+});</code></pre>
+        <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Insertar en mi encuesta</button>
+      </div>
+
+      <!-- Otra tarjeta ejemplo -->
+      <div class="bg-white rounded shadow p-4">
+        <h3 class="text-lg font-semibold text-blue-700">Exportar datos a Excel</h3>
+        <p class="text-sm text-gray-600 mb-2">Script para preparar datos exportables.</p>
+        <pre class="bg-gray-100 p-2 rounded text-sm overflow-auto"><code>Qualtrics.SurveyEngine.addOnload(function() {
+  // Lógica para datos embebidos
+});</code></pre>
+        <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Insertar en mi encuesta</button>
+      </div>
+
+    </div>
+  </section>
+</body>
+</html>

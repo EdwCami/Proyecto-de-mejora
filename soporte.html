@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplos y Soporte | Asistente Qualtrics</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <nav class="bg-white shadow-md p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-xl font-bold text-blue-600">Asistente Qualtrics</h1>
+      <ul class="flex space-x-6 text-sm font-medium">
+        <li><a href="index.html" class="hover:text-blue-500">Inicio</a></li>
+        <li><a href="guia.html" class="hover:text-blue-500">Guía paso a paso</a></li>
+        <li><a href="automatizaciones.html" class="hover:text-blue-500">Automatizaciones</a></li>
+        <li><a href="ejemplos.html" class="text-blue-600">Ejemplos</a></li>
+        <li><a href="soporte.html" class="hover:text-blue-500">Soporte</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Repositorio de ejemplos -->
+  <section class="container mx-auto p-6">
+    <h2 class="text-2xl font-bold text-blue-600 mb-4">Repositorio de Ejemplos</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white rounded shadow p-4">
+        <img src="https://via.placeholder.com/400x200" alt="Registro" class="rounded mb-2">
+        <h3 class="text-lg font-semibold text-blue-700">Registro de usuarios</h3>
+        <p class="text-sm text-gray-600 mb-2">Formulario básico de registro con validación.</p>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Importar</button>
+      </div>
+
+      <div class="bg-white rounded shadow p-4">
+        <img src="https://via.placeholder.com/400x200" alt="A/B Test" class="rounded mb-2">
+        <h3 class="text-lg font-semibold text-blue-700">Pruebas A/B</h3>
+        <p class="text-sm text-gray-600 mb-2">Comparación entre dos versiones de preguntas.</p>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Importar</button>
+      </div>
+
+      <div class="bg-white rounded shadow p-4">
+        <img src="https://via.placeholder.com/400x200" alt="Encuesta Dinámica" class="rounded mb-2">
+        <h3 class="text-lg font-semibold text-blue-700">Encuesta Dinámica</h3>
+        <p class="text-sm text-gray-600 mb-2">Contenido condicional basado en respuestas previas.</p>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Importar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Soporte -->
+  <section class="container mx-auto p-6 mt-10">
+    <h2 class="text-2xl font-bold text-blue-600 mb-4">Soporte y Preguntas Frecuentes</h2>
+    <div class="bg-white p-4 rounded shadow">
+      <ul class="space-y-3">
+        <li><strong>¿Cómo inserto un código en mi encuesta?</strong> Copia el script y pégalo en la pestaña de "Look & Feel" o dentro del "JavaScript" de una pregunta.</li>
+        <li><strong>¿Puedo usar variables condicionales?</strong> Sí, puedes usar campos embebidos y lógicas para mostrar preguntas.</li>
+        <li><strong>¿Dónde puedo ver resultados previos?</strong> En el panel de distribución, selecciona "Respuestas" y exporta como CSV.</li>
+      </ul>
+      <div class="mt-6">
+        <label class="block font-medium mb-2">Asistente IA (simulado)</label>
+        <input type="text" placeholder="Escribe tu pregunta aquí..." class="w-full px-4 py-2 border rounded">
+        <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Enviar</button>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
