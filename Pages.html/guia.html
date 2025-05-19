@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guía paso a paso</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/jpeg" href="../Assets/offerwise_logo.jpeg" />
+    <link rel="stylesheet" href="../styles.css/guia.css" />
+  </head>
+
+  <body class="bg-gray-50 text-gray-800 font-sans">
+    <nav class="bg-white shadow-md p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-xl font-bold text-blue-600">Asistente Qualtrics</h1>
+        <ul class="flex space-x-6 text-sm font-medium">
+          <li><a href="index.html" class="hover:text-blue-500">Inicio</a></li>
+          <li>
+            <a href="guia.html" class="text-blue-600">Guía paso a paso</a>
+          </li>
+          <li>
+            <a href="automatizaciones.html" class="hover:text-blue-500"
+              >Automatizaciones</a
+            >
+          </li>
+          <li>
+            <a href="ejemplos.html" class="hover:text-blue-500">Ejemplos</a>
+          </li>
+          <li>
+            <a href="soporte.html" class="hover:text-blue-500">Soporte</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="flex">
+      <!-- Sidebar de tareas -->
+      <aside class="w-64 bg-white p-4 shadow h-screen sticky top-0">
+        <h2 class="text-lg font-semibold mb-4">Tareas comunes</h2>
+        <ul class="space-y-2">
+          <li>
+            <button
+              onclick="document.getElementById('crear-encuesta').scrollIntoView({behavior: 'smooth'});"
+              class="block w-full text-left hover:text-blue-600"
+            >
+              Crear encuesta
+            </button>
+          </li>
+          <li>
+            <button
+              onclick="document.getElementById('condiciones-logicas').scrollIntoView({behavior: 'smooth'});"
+              class="block w-full text-left hover:text-blue-600"
+            >
+              Personalizar encuesta
+            </button>
+          </li>
+          <li>
+            <button
+              onclick="document.getElementById('anadir-loops').scrollIntoView({behavior: 'smooth'});"
+              class="block w-full text-left hover:text-blue-600"
+            >
+              Añadir loops
+            </button>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Contenido principal -->
+      <main class="flex-1 p-6" id="main-content">
+        <!-- El contenido de cada sección se cargará dinámicamente aquí -->
+      </main>
+    </div>
+    <script src="../main.js/guia.js"></script>
+  </body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personalizar Encuesta</title>
+    <link rel="stylesheet" href="../styles.css/Personalizar-encuesta.css" />
+  </head>
+  <body>
+    <section class="mb-10 personalizar-section">
+      <h2 class="text-2xl font-bold text-blue-600 mb-4">
+        Personalizar encuesta
+      </h2>
+      <div>
+        <h3 class="font-semibold mb-2">
+          Las encuestas se crean y editan en el Generador de encuestas. La
+          pestaña Encuesta se puede abrir de tres formas distintas desde la
+          página Proyectos:
+        </h3>
+      </div>
+      <div class="mb-8">
+        <img
+          src="../Assets/survey-module-01.png"
+          alt="Survey Module 01"
+          class="rounded shadow max-w-full mb-4"
+        />
+        <p class="mb-4">
+          1. Seleccione <b>Crear proyecto</b>; después de seguir los pasos,
+          accederá a la pestaña Encuesta de su nuevo proyecto.
+        </p>
+        <p class="mb-4">
+          2. Haga clic en cualquier proyecto existente para ir a la pestaña
+          Encuesta de ese proyecto.
+        </p>
+        <p class="mb-4">
+          3. Seleccione <b>Editar encuesta</b> en el menú desplegable de
+          acciones.
+        </p>
+        <p class="mb-4">
+          Cuando se abra la pestaña Encuesta, verá las funciones más destacadas
+          del generador de encuestas:
+        </p>
+      </div>
+      <div class="mb-8">
+        <img
+          src="../Assets/survey-overview-2.png"
+          alt="Survey Module 05"
+          class="rounded shadow max-w-full mb-4"
+        />
+        <p class="mb-4">1. <u>Barra de herramientas de la encuesta</u></p>
+        <p class="mb-4">2. <u>Bloque de preguntas</u></p>
+        <p class="mb-4">3. <u>Área de edición de preguntas</u></p>
+        <p class="mb-4">4. <u>Panel de edición de preguntas</u></p>
+      </div>
+      <div class="mb-8">
+        <h3 class="text-xl font-bold text-blue-700 mb-2">
+          Conceptos básicos de bloque
+        </h3>
+        <p class="mb-4">
+          Todas las preguntas de la encuesta se crean, editan y almacenan dentro
+          de bloques. Cada encuesta incluye al menos un bloque llamado
+          inicialmente “Bloque de preguntas predeterminado”. En cada bloque,
+          aparecen cuatro elementos:
+        </p>
+        <img
+          src="../Assets/survey-overview-3.png"
+          alt="Survey Module 06"
+          class="rounded shadow max-w-full mb-4"
+        />
+        <p class="mb-4">
+          <b>1. Nombre del bloque:</b> puede cambiarlo en cualquier momento si
+          hace clic en el cuadro del nombre y escribe uno nuevo.
+        </p>
+
+        <p class="mb-4">
+          <b>2. Añadir bloque:</b> le permite crear bloques nuevos.
+        </p>
+        <p class="mb-4">
+          <b>3. Panel de edición de bloques:</b> aparece al hacer clic en el
+          bloque (por ejemplo, en un espacio en blanco junto al nombre) sin
+          hacer clic en una pregunta. Realice cambios en el comportamiento y el
+          formato de los bloques. Incluye la aleatorización de preguntas, el
+          loop y fusión, y la capacidad de editar el texto del botón
+          Siguiente/Anterior.
+        </p>
+        <p class="mb-4">
+          <b>4. Menú Opciones de bloque:</b> muestra una lista de opciones de
+          edición de bloques con un solo clic. Consulte la página del enlace
+          para obtener más información sobre cada opción.
+        </p>
+        <p class="mb-4">
+          Estos ejemplos ayudarán a comprender mejor el concepto de bloque:
+        </p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>
+            Varias encuestas empiezan con un bloque inicial de “Datos
+            demográficos” en el que se ordenan los datos de diversos encuestados
+            (p. ej.: mujer u hombre, joven o adulto, formación, etc.) para
+            identificar los bloques de preguntas de encuesta que se adaptan
+            mejor a los receptores.
+          </li>
+          <br />
+          <li>
+            En la siguiente imagen se muestra una aplicación de varios bloques,
+            donde el bloque de datos demográficos inicial recopila los nombres y
+            apellidos. En los siguientes bloques, los nombres se pueden
+            reutilizar para dirigirse a los encuestados por sus nombres mediante
+            el uso de la lógica de datos embebidos. Los nombres introducidos
+            también se pueden utilizar para generar o actualizar listas de
+            contactos.
+          </li>
+          <br />
+          <li>
+            Además, puede canalizar los diferentes datos demográficos mediante
+            varias rutas de encuestas (es decir, una ruta para hombres y otra
+            para mujeres) gracias a la Lógica de ramificación.
+          </li>
+          <br />
+          <li>
+            Puede elegir varios encuestados en virtud de las las cuotas
+            alcanzadas para una demografía concreta (es decir, cuotas según
+            edad, género o nivel de ingresos).
+          </li>
+          <br />
+          <li>
+            Por último, podría mostrar diferentes finalizaciones de encuesta
+            para cada grupo demográfico.
+          </li>
+        </ul>
+        <p>Veamos un poco más en detalle:</p>
+      </div>
+      <div class="mb-8">
+        <img
+          src="../Assets/survey-overview-4.png"
+          alt="Survey Module 07"
+          class="rounded shadow max-w-full mb-4"
+        />
+        <ol class="list-decimal pl-6 mb-4">
+          <li>
+            Un segundo bloque (Indicadores clave) aparece debajo del bloque de
+            preguntas predeterminado renombrado como Bloque de datos
+            demográficos.
+          </li>
+          <li>
+            El menú Opciones de bloque presenta comandos para los bloques, como
+            contraer preguntas (lo que reduce las preguntas de un bloque para
+            una mejor visualización, como vimos con el bloque Demografía).
+          </li>
+          <li>
+            Los bloques se separan mediante un separador (que incluye un
+            práctico comando <u>Añadir bloque</u>).
+          </li>
+        </ol>
+        <p class="mb-4">
+          Para encuestas sencillas, se puede utilizar un único bloque para todas
+          las preguntas. Sin embargo, para encuestas más complejas, se requiere
+          una organización de las preguntas en varios bloques que permitan la
+          aplicación de las lógicas de <u>flujo de la encuesta</u>, que incluye
+          <u>ramificación</u>, <u>aleatorización</u>, <u>autenticación</u> y
+          <u>Datos embebidos.</u>
+        </p>
+        <p class="mb-4">
+          Visita el Bloques de preguntas Página para aprender cómo aprovechar al
+          máximo los bloques en la creación de flujos de encuesta
+          sofisticados.lama
+        </p>
+      </div>
+      <div class="mb-8">
+        <h3 class="text-xl font-bold text-blue-700 mb-2">
+          Conceptos básicos del panel de preguntas y edición
+        </h3>
+        <p class="mb-4">
+          Inicialmente, se insertará una pregunta de opción múltiple
+          predeterminada en su Bloque de preguntas predeterminado. De este modo,
+          se garantiza que el bloque contenga al menos una pregunta para
+          empezar.
+        </p>
+        <p class="mb-4">
+          1. Para añadir más preguntas a un bloque, haga clic en
+          <b>Añadir nueva pregunta.</b>
+        </p>
+        <img
+          src="../Assets/survey-module-05.png"
+          alt="Survey Module 06"
+          class="rounded shadow max-w-full mb-4"
+        />
+        <p class="mb-4">
+          2. Si desea añadir más preguntas, desplácese sobre cualquiera de las
+          preguntas existentes y haga clic en los botones con el símbolo más (+)
+          (situados en la parte superior o inferior de la pregunta existente) en
+          función de dónde desee agregar la pregunta.
+        </p>
+        <p class="mb-4">
+          3. Haga clic en el signo menos (–) para eliminar una pregunta.
+        </p>
+        <div class="cons">
+          <img
+            src="../Assets/signo-de-exclamacion-en-un-circulo.png"
+            alt="Consejo Q"
+            class="cons-icon"
+          />
+          <p class="mb-2">
+            <b>Consejo Q:</b> Puede recuperar las preguntas eliminadas de la
+            papelera situada en la parte inferior de la encuesta. Consulte la
+            sección Eliminar preguntas para obtener más información.
+          </p>
+        </div>
+      </div>
+      <div class="mb-8">
+        <p class="mb-4">
+          4. Para mover las preguntas, haga clic en ellas y arrástrelas. La
+          pregunta que se mueva se resaltará en azul y donde aterriza está
+          representada por una línea azul en el editor.
+        </p>
+        <img
+          src="../Assets/survey-module-06.png"
+          alt="Survey Module 06"
+          class="rounded shadow max-w-full mb-4"
+        />
+        <div class="cons">
+          <img
+            src="../Assets/signo-de-exclamacion-en-un-circulo.png"
+            alt="Consejo Q"
+            class="cons-icon"
+          />
+          <p class="mb-2">
+            <b>Consejo Q:</b> Tenga cuidado de no hacer clic en el texto de la
+            pregunta o en el texto de la opción de respuesta, o terminará
+            editando el texto de la pregunta en lugar de moverla.
+          </p>
+        </div>
+        <h3 class="text-xl font-bold text-blue-700 mb-2">
+          Edición del texto de la pregunta
+        </h3>
+        <p class="mb-4">
+          Puede escribir preguntas, editar el texto de las preguntas y aplicar
+          formato al texto de estas en la zona de edición.
+        </p>
+      </div>
+      <div class="mb-8">
+        <img
+          src="../Assets/survey-module-07.png"
+          alt="Survey Module 07"
+          class="rounded shadow max-w-full mb-4"
+        />
+        <p class="mb-4">
+          1. Haga clic en los cuadros de texto de la pregunta (u opciones de
+          respuesta) para insertar o editar texto.
+        </p>
+        <p class="mb-4">
+          2. Haga clic en el botón Texto dinámico para obtener información de
+          preguntas y bloques anteriores (p. ej.: reutilizar el nombre de una
+          persona de un bloque de datos demográficos para personalizar una
+          pregunta).
+        </p>
+        <p class="mb-4">
+          3. Haga clic en el botón Editor de contenido enriquecido para dar formato
+          al texto cambiando las fuentes y los tamaños de fuente, aplicando
+          negritas, viñetas, cursiva y más.
+        </p>
+      </div>
+    </section>
+  </body>
+</html>

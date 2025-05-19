@@ -1,0 +1,110 @@
+/* Personalización específica para la página Personalizar encuesta */
+
+.personalizar-section h2 {
+  color: #2563eb;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.personalizar-section h3 {
+  color: #1d4ed8;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.personalizar-section p,
+.personalizar-section li {
+  font-size: 1.08rem;
+  color: #374151;
+}
+
+.personalizar-section ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.personalizar-section ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.personalizar-section img:not(.cons-icon) {
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin-bottom: 1rem;
+  max-width: 100%;
+  width: 600px;
+  height: 350px;
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.personalizar-section .cons {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #f3f4f6;
+  color: #374151;
+  border-left: 4px solid #9ca3af;
+  padding: 1rem 1rem 1rem 120px;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0 1rem 0;
+  font-style: italic;
+  min-height: 50px;
+  margin-left: 10%;
+  width: 75%;
+}
+
+/* Lightbox para imágenes ampliadas */
+.img-lightbox-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+.img-lightbox-modal.active {
+  display: flex;
+}
+.img-lightbox-modal img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 10px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+  background: #fff;
+}
+.img-lightbox-modal .close-area {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  cursor: zoom-out;
+}
+
+.personalizar-section .cons-icon {
+  width: 50px !important;
+  height: 50px !important;
+  min-width: 50px !important;
+  min-height: 50px !important;
+  max-width: 50px !important;
+  max-height: 50px !important;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  pointer-events: none;
+}

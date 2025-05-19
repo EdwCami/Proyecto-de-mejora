@@ -1,0 +1,113 @@
+/* Personalización para la página de guía Qualtrics */
+
+.guia-section {
+  background: #f8fafc;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.guia-section img {
+  border: 2px solid #2563eb;
+  margin-bottom: 1rem;
+}
+
+.guia-section h2 {
+  color: #2563eb;
+  margin-bottom: 1rem;
+}
+
+.guia-section p, .guia-section li {
+  font-size: 1.08rem;
+  color: #374151;
+}
+
+.guia-section b {
+  color: #1e40af;
+}
+
+.guia-section .consejo-q {
+  background: #e0e7ff;
+  color: #3730a3;
+  border-left: 4px solid #6366f1;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0 1rem 0;
+  font-style: italic;
+}
+.cons {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #f3f4f6; /* gris claro */
+  color: #374151; /* gris oscuro */
+  border-left: 4px solid #9ca3af; /* gris medio */
+  padding: 1rem 1rem 1rem 120px;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0 1rem 0;
+  font-style: italic;
+  min-height: 50px;
+  width: 75%;
+  margin-left: 10%;
+}
+.cons .cons-icon {
+  width: 50px !important;
+  height: 50px !important;
+  min-width: 50px !important;
+  min-height: 50px !important;
+  max-width: 50px !important;
+  max-height: 50px !important;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Lightbox para imágenes ampliadas en la guía */
+.img-lightbox-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+.img-lightbox-modal.active {
+  display: flex;
+}
+.img-lightbox-modal img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 10px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+  background: #fff;
+}
+.img-lightbox-modal .close-area {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  cursor: zoom-out;
+}
+
+#main-content img {
+  width: 600px;
+  height: 350px;
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin-bottom: 1rem;
+  max-width: 100%;
+}
