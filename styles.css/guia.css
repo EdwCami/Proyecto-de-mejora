@@ -111,3 +111,14 @@
   margin-bottom: 1rem;
   max-width: 100%;
 }
+
+.font-text{
+  font-size: 2rem;
+}
+
+.sidebar-btn-active {
+  color: #2563eb !important;
+  border-bottom: 2.5px solid #2563eb;
+  background: transparent;
+  font-weight: bold;
+}

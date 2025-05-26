@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const sectionFiles = {
     'crear-encuesta': '../Pages.html/crear-encuesta.html',
     'condiciones-logicas': '../Pages.html/personalizar-encuesta.html',
+    'tipos-de-preguntas': '../Pages.html/tipos-de-preguntas.html',
     // Puedes agregar más secciones aquí si creas más archivos
   };
 
@@ -108,11 +109,20 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('aside button').forEach(btn => {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
+      // Quitar la clase activa de todos los botones
+      document.querySelectorAll('aside button').forEach(b => b.classList.remove('sidebar-btn-active'));
+      // Agregar la clase activa al botón seleccionado
+      this.classList.add('sidebar-btn-active');
       if (this.textContent.includes('Crear encuesta')) {
         loadSection('crear-encuesta');
       } else if (this.textContent.includes('Personalizar encuesta')) {
         loadSection('condiciones-logicas');
+      } else if (this.textContent.includes('Tipos de preguntas')) {
+        loadSection('tipos-de-preguntas');
       } // Puedes agregar más condiciones para otras secciones
     });
   });
+  // Marcar el primer botón como activo al cargar la página
+  const firstBtn = document.querySelector('aside button');
+  if (firstBtn) firstBtn.classList.add('sidebar-btn-active');
 });

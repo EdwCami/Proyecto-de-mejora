@@ -1,52 +1,529 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Automatizaciones | Asistente Qualtrics</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="icon" type="image/jpeg" href="../Assets/offerwise_logo.jpeg">
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans">
-  <nav class="bg-white shadow-md p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-xl font-bold text-blue-600">Asistente Qualtrics</h1>
-      <ul class="flex space-x-6 text-sm font-medium">
-        <li><a href="index.html" class="hover:text-blue-500">Inicio</a></li>
-        <li><a href="guia.html" class="hover:text-blue-500">Guía paso a paso</a></li>
-        <li><a href="automatizaciones.html" class="text-blue-600">Automatizaciones</a></li>
-        <li><a href="ejemplos.html" class="hover:text-blue-500">Ejemplos</a></li>
-        <li><a href="soporte.html" class="hover:text-blue-500">Soporte</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <section class="container mx-auto p-6">
-    <h2 class="text-2xl font-bold text-blue-600 mb-4">Automatizaciones en Qualtrics</h2>
-    <p class="mb-6 text-gray-700">Scripts reutilizables para mejorar la eficiencia de tus encuestas.</p>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-      <!-- Tarjeta de Script -->
-      <div class="bg-white rounded shadow p-4">
-        <h3 class="text-lg font-semibold text-blue-700">Validación de correo</h3>
-        <p class="text-sm text-gray-600 mb-2">Verifica que el campo contenga una dirección de correo válida.</p>
-        <pre class="bg-gray-100 p-2 rounded text-sm overflow-auto"><code>Qualtrics.SurveyEngine.addOnload(function() {
-  this.questioninput.setAttribute("pattern", ".+@.+\\..+");
-});</code></pre>
-        <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Insertar en mi encuesta</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automatizaciones | Asistente Qualtrics</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/jpeg" href="../Assets/offerwise_logo.jpeg" />
+  </head>
+  <body class="bg-gray-50 text-gray-800 font-sans">
+    <nav class="bg-white shadow-md p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <img
+            src="../Assets/logo_final..svg"
+            alt="Logo Offerwise"
+            style="height: 40px; width: auto"
+          />
+          <h1 class="text-xl font-bold text-blue-600">Asistente Qualtrics</h1>
+        </div>
+        <ul class="flex space-x-6 text-sm font-medium">
+          <li><a href="index.html" class="hover:text-blue-500">Inicio</a></li>
+          <li>
+            <a href="guia.html" class="hover:text-blue-500">Guía paso a paso</a>
+          </li>
+          <li>
+            <a href="automatizaciones.html" class="text-blue-600"
+              >Automatizaciones</a
+            >
+          </li>
+          <li>
+            <a href="ejemplos.html" class="hover:text-blue-500">Ejemplos</a>
+          </li>
+          <li>
+            <a href="soporte.html" class="hover:text-blue-500">Soporte</a>
+          </li>
+        </ul>
       </div>
+    </nav>
 
-      <!-- Otra tarjeta ejemplo -->
-      <div class="bg-white rounded shadow p-4">
-        <h3 class="text-lg font-semibold text-blue-700">Exportar datos a Excel</h3>
-        <p class="text-sm text-gray-600 mb-2">Script para preparar datos exportables.</p>
-        <pre class="bg-gray-100 p-2 rounded text-sm overflow-auto"><code>Qualtrics.SurveyEngine.addOnload(function() {
-  // Lógica para datos embebidos
-});</code></pre>
-        <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Insertar en mi encuesta</button>
+    <section class="container mx-auto p-6">
+      <h2 class="text-2xl font-bold text-blue-600 mb-4">
+        Automatizaciones en Qualtrics
+      </h2>
+      <p class="mb-6 text-gray-700">
+        Scripts reutilizables para mejorar la eficiencia de tus encuestas.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Tarjeta de Script parametro genero -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700">
+            Selección automática y ocultar encuesta (por parámetro)
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para colocar en la pregunta correspondiente el parametro de
+            genero.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto"
+          ><code>Qualtrics.SurveyEngine.addOnload(function () {
+    let link = '${e://Field/link}';
+    if (link == 'LIVE') {
+        jQuery('body').hide();
+    }
+});
+
+Qualtrics.SurveyEngine.addOnReady(function () {
+    //STATE | GENDER | SEL | REGION
+    debugger;
+    let link = '${e://Field/link}';
+    function marcar(cod) {
+        if (jQuery('.SingleAnswer').length == 0) {
+            jQuery('.MultipleAnswer').each(function () {
+                if (jQuery(this).prop("id").split("-")[1] == cod)
+                    jQuery(this).click();
+            })
+        } else {
+            jQuery('.SingleAnswer').each(function () {
+                if (jQuery(this).prop("id").split("-")[1] == cod)
+                    jQuery(this).click();
+            })
+        }
+    }
+
+    let param = '${e://Field/gender}';
+    marcar(param);
+
+    if (link == 'LIVE') {
+        jQuery('#NextButton').click();
+    }
+});
+
+Qualtrics.SurveyEngine.addOnUnload(function () {
+    let link = '${e://Field/link}';
+    if (link == 'LIVE') {
+        jQuery('body').show();
+    }
+});
+</code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script parámetro edad -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700">
+            Autocompletar edad y avanzar automáticamente (por parámetro)
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para autocompletar el campo de edad y avanzar si el link es
+            LIVE.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto"
+          ><code>Qualtrics.SurveyEngine.addOnload(function(){
+                  let link = '${e://Field/link}';
+                  if(link=='LIVE'){
+                  document.querySelector('body').hide();
+                  }
+                });
+                Qualtrics.SurveyEngine.addOnReady(function(){
+                  let source = '${e://Field/age}';
+                  document.querySelector('input').value = source; let link = '${e://Field/link}';
+                  if(link=='LIVE'){
+                  document.querySelector('#NextButton').click();
+                  }
+                });
+                Qualtrics.SurveyEngine.addOnUnload(function(){
+                  let link = '${e://Field/link}';
+                  if(link=='LIVE'){
+                  document.querySelector('body').show();
+                  }
+                });
+                </code>
+                </pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script parámetro selección -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700">
+            Selección automática por parámetro SEL
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para marcar automáticamente una respuesta según el parámetro
+            SEL y avanzar si el link es LIVE.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto"
+          ><code>Qualtrics.SurveyEngine.addOnload(function () {
+    let link = '${e://Field/link}';
+    if (link == 'LIVE') {
+        jQuery('body').hide();
+    }
+});
+
+Qualtrics.SurveyEngine.addOnReady(function () {
+    //STATE | GENDER | SEL | REGION
+    debugger;
+    let link = '${e://Field/link}';
+    function marcar(cod) {
+        if (jQuery('.SingleAnswer').length == 0) {
+            jQuery('.MultipleAnswer').each(function () {
+                if (jQuery(this).prop("id").split("-")[1] == cod)
+                    jQuery(this).click();
+            })
+        } else {
+            jQuery('.SingleAnswer').each(function () {
+                if (jQuery(this).prop("id").split("-")[1] == cod)
+                    jQuery(this).click();
+            })
+        }
+    }
+
+    let param = '${e://Field/sel}';
+    marcar(param);
+
+    if (link == 'LIVE') {
+        jQuery('#NextButton').click();
+    }
+});
+
+Qualtrics.SurveyEngine.addOnUnload(function () {
+    let link = '${e://Field/link}';
+    if (link == 'LIVE') {
+        jQuery('body').show();
+    }
+});
+</code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script parámetro state -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700">
+            Selección automática por parámetro STATE
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para marcar automáticamente una respuesta según el parámetro
+            STATE y avanzar si el link es LIVE. Tener en cuenta que el parámetro
+            STATE puede cambiar segun el estudio puede ser CITY, REGION O AM.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto"
+          ><code>Qualtrics.SurveyEngine.addOnload(function () {
+    let link = '${e://Field/link}';
+    if (link == 'LIVE') {
+        jQuery('body').hide();
+    }
+});
+
+Qualtrics.SurveyEngine.addOnReady(function () {
+    //STATE | GENDER | SEL | REGION
+    debugger;
+    let link = '${e://Field/link}';
+    function marcar(cod) {
+        if (jQuery('.SingleAnswer').length == 0) {
+            jQuery('.MultipleAnswer').each(function () {
+                if (jQuery(this).prop("id").split("-")[1] == cod)
+                    jQuery(this).click();
+            })
+        } else {
+            jQuery('.SingleAnswer').each(function () {
+                if (jQuery(this).prop("id").split("-")[1] == cod)
+                    jQuery(this).click();
+            })
+        }
+    }
+
+    let param = '${e://Field/state}';
+    marcar(param);
+
+    if (link == 'LIVE') {
+        jQuery('#NextButton').click();
+    }
+});
+
+Qualtrics.SurveyEngine.addOnUnload(function () {
+    let link = '${e://Field/link}';
+    if (link == 'LIVE') {
+        jQuery('body').show();
+    }
+});
+</code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script selección múltiple con mínimo, máximo y opción exclusiva -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700">
+            Validación de selección múltiple con mínimo, máximo y opción
+            exclusiva
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para limitar la selección a mínimo 3 y máximo 11 opciones, y
+            gestionar una opción exclusiva en preguntas de tipo checkbox.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto"
+          ><code>Qualtrics.SurveyEngine.addOnload(function() {
+    var minSelections = 3;
+    var maxSelections = 11;
+    var questionId = this.getQuestionInfo().QuestionID;
+    var exclusiveOptionSelector = 'input[name="' + questionId + '"]#QR~QID32~99'; // Ajusta si el ID es diferente
+    var checkboxes = document.querySelectorAll('input[type="checkbox"][name*="' + questionId + '"]');
+    var exclusiveOption = document.querySelector('input[id="QR~QID32~99"]'); // Asegúrate que este sea el ID correcto
+    var that = this;
+    function updateCheckboxes() {
+        var checkedCount = 0;
+        var exclusiveChecked = exclusiveOption && exclusiveOption.checked;
+        if (exclusiveChecked) {
+            // Desmarcar y desactivar todas las demás opciones
+            checkboxes.forEach(function(cb) {
+                if (cb !== exclusiveOption) {
+                    cb.checked = false;
+                    cb.disabled = true;
+                }
+            });
+            that.enableNextButton();
+            return;
+        }
+        // Rehabilita todas las opciones si la exclusiva no está marcada
+        checkboxes.forEach(function(cb) {
+            cb.disabled = false;
+        });
+        // Contar seleccionadas
+        checkboxes.forEach(function(cb) {
+            if (cb.checked) {
+                checkedCount++;
+            }
+        });
+        // Desactivar opciones no marcadas si ya hay 3 seleccionadas
+        checkboxes.forEach(function(cb) {
+            if (checkedCount >= maxSelections && !cb.checked) {
+                cb.disabled = true;
+            } else {
+                cb.disabled = false;
+            }
+        });
+        // Habilitar siguiente solo si hay exactamente 3 seleccionadas
+        if (checkedCount <= maxSelections && checkedCount >= minSelections ) {
+            that.enableNextButton();
+        } else {
+            that.disableNextButton();
+        }
+    }
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', updateCheckboxes);
+    });
+    updateCheckboxes(); // Ejecutar al inicio
+});
+</code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Video con controles personalizados -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700 mb-2">
+            Reproductor de video con controles personalizados
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Ejemplo de cómo insertar un video en tu encuesta con controles
+            play/pause personalizados usando HTML y JavaScript.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"
+          ><code>&lt;div class="vid"&gt;
+  &lt;video id="video" width="80%"&gt;
+    &lt;source src="URL_DEL_VIDEO" type="video/mp4"&gt;
+  &lt;/video&gt;
+  &lt;div class="controles"&gt;
+    &lt;button id="playPause"&gt;▶️ / ⏸️&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+const video = document.getElementById("video");
+const btn = document.getElementById("playPause");
+btn.addEventListener("click", () =&gt; {
+  if (video.paused) {
+    video.play();
+    btn.textContent = "⏸️";
+  } else {
+    video.pause();
+    btn.textContent = "▶️";
+  }
+});
+&lt;/script&gt;
+</code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script selección automática de rango de edad -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700 mb-2">
+            Selección automática de rango de edad y avanzar (por parámetro o
+            respuesta)
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para marcar automáticamente un rango de edad según parámetro
+            o respuesta abierta, y avanzar si el link es LIVE.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2">
+            <code>
+                Qualtrics.SurveyEngine.addOnload(function() {
+                let link = '${e://Field/link}';
+                if(link=='LIVE'){
+                  document.querySelector('body').hide();
+                }
+              });
+              Qualtrics.SurveyEngine.addOnReady(function() {
+                let element = document.querySelectorAll('span label');
+                function marcar(cod){
+                  element[cod-1].click();
+                }
+                let age = '${e://Field/link}' == 'LIVE' ? '${e://Field/age}' : parseInt('${q://QID6/ChoiceTextEntryValue}');
+                if(age < 20)
+                  marcar(1);
+                if(age >= 20 && age <= 30)
+                  marcar(2);
+                if(age >= 31 && age <= 40)
+                  marcar(3);
+                if(age >= 41 && age <= 50)
+                  marcar(4);
+                if(age >= 51 && age <= 60)
+                  marcar(5);
+                if(age > 60)
+                  marcar(6);
+                let link = '${e://Field/link}';
+                if(link=='LIVE'){
+                  document.querySelector('#NextButton').click();
+                }
+              });
+              Qualtrics.SurveyEngine.addOnUnload(function() {
+                let link = '${e://Field/link}';
+                if(link=='LIVE'){
+                  document.querySelector('body').show();
+                }
+              });
+            </code>
+          </pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script según combinaciones de preguntas previas -->
+        <div class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400">
+          <h3 class="text-lg font-semibold text-blue-700 mb-2">
+            Selección automática según combinaciones de preguntas previas
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para marcar automáticamente una opción según la combinación de respuestas de preguntas previas y avanzar si el link es LIVE.
+          </p>
+          <pre class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"><code>Qualtrics.SurveyEngine.addOnload(function()
+{
+	/*Coloque su JavaScript aquí para ejecutarlo cuando se cargue la página*/
+
+});
+
+Qualtrics.SurveyEngine.addOnReady(function()
+{
+	/*Coloque su JavaScript aquí para ejecutarlo cuando se muestre la página completamente*/
+	let element = document.querySelectorAll('span label');
+	function marcar(cod){
+		element[cod-1].click();
+	}
+	
+	let p7 = '${q://QID204/SelectedChoicesRecode}';
+	let p4 = '${q://QID200/SelectedChoicesRecode}';
+	let p12 = '${q://QID210/SelectedChoicesRecode}';
+
+	console.log(p7, 'p7');
+	console.log(p4, 'p7');
+	console.log(p12, 'p7');
+	
+	if (p7 == '2' || (p7 == '2' && p12 == '2') || (p7 =='' && p12 == '2')) {
+		marcar(1);
+	}  else if ( (p7 == '3' || p7 == '4' || p7 == '5' || p7 == '6' || p7 == '7' || p7 == '8' || p7 == '9' || p7 == '90') || (p4 == '2' && p12 != '2') ) {
+		marcar(2);
+	} else if(p4 == '3'){
+		marcar(3);
+	}
+
+
+	let link = '${e://Field/link}';
+	if(link=='LIVE'){
+		document.querySelector('#NextButton').click();
+	}
+
+});
+
+Qualtrics.SurveyEngine.addOnUnload(function()
+{
+	/*Coloque su JavaScript aquí para ejecutarlo cuando se descargue la página*/
+
+});
+</code></pre>
+          <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            Insertar en mi encuesta
+          </button>
+        </div>
       </div>
+    </section>
 
-    </div>
-  </section>
-</body>
+    <script>
+// Función para copiar el código de la tarjeta al hacer clic en "Insertar en mi encuesta"
+document.querySelectorAll('.card-auto').forEach(card => {
+  const btn = card.querySelector('button');
+  const codeBlock = card.querySelector('pre code');
+  if (btn && codeBlock) {
+    btn.addEventListener('click', () => {
+      // Elimina espacios y saltos de línea innecesarios al inicio y final
+      const code = codeBlock.innerText.trim();
+      // Copia al portapapeles
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = '¡Copiado!';
+        setTimeout(() => {
+          btn.textContent = 'Insertar en mi encuesta';
+        }, 1500);
+      });
+    });
+  }
+});
+</script>
+  </body>
 </html>

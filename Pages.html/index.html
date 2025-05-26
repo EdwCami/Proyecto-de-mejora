@@ -1,35 +1,83 @@
 <!-- index.html -->
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Inicio | Asistente Qualtrics</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="icon" type="image/jpeg" href="../Assets/offerwise_logo.jpeg">
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans">
-  <nav class="bg-white shadow-md p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-xl font-bold text-blue-600">Asistente Qualtrics</h1>
-      <ul class="flex space-x-6 text-sm font-medium">
-        <li><a href="index.html" class="text-blue-600">Inicio</a></li>
-        <li><a href="guia.html" class="hover:text-blue-500">Guía paso a paso</a></li>
-        <li><a href="automatizaciones.html" class="hover:text-blue-500">Automatizaciones</a></li>
-        <li><a href="ejemplos.html" class="hover:text-blue-500">Ejemplos</a></li>
-        <li><a href="soporte.html" class="hover:text-blue-500">Soporte</a></li>
-      </ul>
-    </div>
-  </nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inicio | Asistente Qualtrics</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/jpeg" href="../Assets/offerwise_logo.jpeg" />
+  </head>
+  <body
+    class="bg-gray-50 text-gray-800 font-sans min-h-screen"
+    style="
+      background: url('../Assets/banner-final.png') no-repeat center center
+        fixed;
+      background-size: cover;
+    "
+  >
+    <nav class="bg-white shadow-md p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <img
+            src="../Assets/logo_final..svg"
+            alt="Logo Offerwise"
+            style="height: 40px; width: auto"
+          />
+          <h1 class="text-xl font-bold text-blue-600">Asistente Qualtrics</h1>
+        </div>
+        <ul class="flex space-x-6 text-sm font-medium">
+          <li><a href="index.html" class="text-blue-600">Inicio</a></li>
+          <li>
+            <a href="guia.html" class="hover:text-blue-500">Guía paso a paso</a>
+          </li>
+          <li>
+            <a href="automatizaciones.html" class="hover:text-blue-500"
+              >Automatizaciones</a
+            >
+          </li>
+          <li>
+            <a href="ejemplos.html" class="hover:text-blue-500">Ejemplos</a>
+          </li>
+          <li>
+            <a href="soporte.html" class="hover:text-blue-500">Soporte</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-  <main class="container mx-auto p-6 text-center">
-    <h2 class="text-3xl font-bold text-blue-700 mb-4">Bienvenido al Asistente Qualtrics</h2>
-    <p class="text-lg text-gray-700 mb-6">
-      Esta herramienta está diseñada para ayudarte a utilizar Qualtrics de forma eficiente, incluso si no tienes conocimientos técnicos.
-    </p>
-    <a href="guia.html">
-      <button class="bg-blue-600 text-white px-6 py-3 text-lg rounded hover:bg-blue-700 transition">Comenzar</button>
-    </a>
-  </main>
-</body>
+    <main
+      class="flex flex-col items-center justify-center min-h-screen p-6 text-center bg-transparent"
+    >
+      <div
+        style="
+          backdrop-filter: blur(8px);
+          background: rgba(255, 255, 255, 0.75);
+          border-radius: 1.5rem;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+          padding: 2.5rem 2rem;
+          max-width: 480px;
+          width: 100%;
+        "
+      >
+        <h2 class="text-3xl font-bold text-blue-700 mb-4">
+          Bienvenido al Asistente Qualtrics
+        </h2>
+        <p class="text-lg text-gray-700 mb-6">
+          Esta herramienta está diseñada para ayudarte a utilizar Qualtrics de
+          forma eficiente, incluso si no tienes conocimientos técnicos.
+        </p>
+        <a href="guia.html">
+          <button
+            class="bg-blue-600 text-white px-6 py-3 text-lg rounded hover:bg-blue-700 transition"
+          >
+            Comenzar
+          </button>
+        </a>
+      </div>
+    </main>
+  </body>
 </html>
