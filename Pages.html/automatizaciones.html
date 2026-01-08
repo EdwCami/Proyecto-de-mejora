@@ -11,7 +11,7 @@
     <link rel="icon" type="image/jpeg" href="../Assets/offerwise_logo.jpeg" />
   </head>
   <body class="bg-gray-50 text-gray-800 font-sans">
-    <nav class="bg-white shadow-md p-4">
+    <nav class="bg-white shadow-md p-4 sticky top-0 z-50">
       <div class="container mx-auto flex justify-between items-center">
         <div class="flex items-center gap-3">
           <img
@@ -399,8 +399,7 @@ btn.addEventListener("click", () =&gt; {
             Script para marcar automáticamente un rango de edad según parámetro
             o respuesta abierta, y avanzar si el link es LIVE.
           </p>
-          <pre
-            class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2">
+          <pre class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2">
             <code>
                 Qualtrics.SurveyEngine.addOnload(function() {
                 let link = '${e://Field/link}';
@@ -447,14 +446,19 @@ btn.addEventListener("click", () =&gt; {
         </div>
 
         <!-- Tarjeta de Script según combinaciones de preguntas previas -->
-        <div class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400">
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
           <h3 class="text-lg font-semibold text-blue-700 mb-2">
             Selección automática según combinaciones de preguntas previas
           </h3>
           <p class="text-sm text-gray-600 mb-2">
-            Script para marcar automáticamente una opción según la combinación de respuestas de preguntas previas y avanzar si el link es LIVE.
+            Script para marcar automáticamente una opción según la combinación
+            de respuestas de preguntas previas y avanzar si el link es LIVE.
           </p>
-          <pre class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"><code>Qualtrics.SurveyEngine.addOnload(function()
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"
+          ><code>Qualtrics.SurveyEngine.addOnload(function()
 {
 	/*Coloque su JavaScript aquí para ejecutarlo cuando se cargue la página*/
 
@@ -498,6 +502,611 @@ Qualtrics.SurveyEngine.addOnUnload(function()
 
 });
 </code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script marcar por única selección y avanzar -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700 mb-2">
+            Marcar automáticamente si solo hay una opción seleccionada y avanzar
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para marcar la primera opción si solo hay una seleccionada y
+            avanzar automáticamente si el link es LIVE.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"
+          ><code>Qualtrics.SurveyEngine.addOnload(function()
+{
+  /*Coloque aquí su código JavaScript que ejecutar cuando se cargue la página*/
+});
+Qualtrics.SurveyEngine.addOnReady(function()
+{
+  /*Coloque aquí su código JavaScript que ejecutar cuando la página se haya mostrado completamente*/
+  let element = document.querySelectorAll('span label');
+  function marcar(cod) {
+    element[cod-1].click();
+  }
+  var selectedChoices = "${q://QID8/SelectedChoicesRecode}";
+  // Divide la cadena en un array de opciones seleccionadas
+  var selectedArray = selectedChoices.split(',').map(function(item) {
+      return item.trim(); // Eliminar espacios alrededor de los valores
+  });
+  if(selectedArray.length === 1) {
+    // Si solo hay una opcion, marcar la primera
+      marcar(1);
+    //Y si esta en LIVE, que siga derecho
+    let link = '${e://Field/link}';
+    if(link=='LIVE'){
+      document.querySelector('#NextButton').click();
+    }
+  }
+});
+Qualtrics.SurveyEngine.addOnUnload(function()
+{
+  /*Coloque aquí su código JavaScript que ejecutar cuando se descargue la página*/
+});
+</code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script mostrar cajas de texto progresivamente -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700 mb-2">
+            Mostrar cajas de texto progresivamente según respuesta
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para mostrar una nueva caja de texto solo si la anterior
+            tiene valor, y personalizar el mensaje de error.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"
+          ><code>Qualtrics.SurveyEngine.addOnload(function() {
+    // Seleciona todas as caixas de texto
+    let caixas = document.querySelectorAll('.QuestionBody .ChoiceStructure tbody tr');
+    
+    // Esconde todas as caixas de texto, exceto a primeira
+    for (let i = 1; i < 8; i++) {
+        caixas[i].style.display = 'none';
+    }
+});
+
+Qualtrics.SurveyEngine.addOnReady(function() {
+    
+    document.querySelector('.ValidationError').innerText = "No te preocupes si no estás seguro de cómo se escribe. Utilizá un espacio para cada supermercado. Si no se te ocurre ninguno, escribí “Ninguno” y continuá.";
+    // Função para verificar e exibir a próxima caixa de texto
+    const verificarCaixas = () => {
+        let caixas = document.querySelectorAll('.QuestionBody .ChoiceStructure tbody tr');
+        
+        // Itera sobre as caixas de texto e exibe a próxima se a atual tiver valor
+        for(let j = 1; j < 8; j++) {
+            if(caixas[j-1].children[1].children[0].value !== '') {
+                caixas[j].style.display = '';
+            } else {
+                caixas[j].style.display = 'none';
+                caixas[j].children[1].children[0].value = ''; // Limpa o valor da caixa de texto que foi escondida
+            }
+        }
+    };
+    
+    // Adiciona o evento de input em todas as caixas de texto
+    let caixas = document.querySelectorAll('.QuestionBody .ChoiceStructure tbody tr input');
+    caixas.forEach(caixa => {
+        caixa.addEventListener('input', verificarCaixas);
+    });
+});
+
+Qualtrics.SurveyEngine.addOnUnload(function()
+{
+	/*Coloque seu JavaScript aqui para ser executado quando a página estiver descarregada*/
+
+});
+</code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script marcar todas las opciones visibles y avanzar automáticamente -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700 mb-2">
+            Marcar todas las opciones visibles y avanzar automáticamente
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para marcar todas las opciones visibles (checkbox o radio) y
+            avanzar automáticamente si el link es LIVE.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"
+          ><code>Qualtrics.SurveyEngine.addOnload(function() {
+
+	const choices = this.getQuestionContainer().querySelectorAll('.Selection');
+	console.log("Total de opções detectadas:", choices.length);
+
+	choices.forEach(choice => {
+			// Marca a opção se estiver visível na tela
+			const input = choice.querySelector('input[type="checkbox"], input[type="radio"]');
+			if (input && !input.checked) {
+			 
+          input.click(); // simula clique real
+     
+      }
+  });
+	
+	// Função auxiliar para verificar visibilidade no viewport
+	function isVisibleInViewport(el) {
+		const rect = el.getBoundingClientRect();
+		const style = getComputedStyle(el);
+
+		return (
+			style.display !== 'none' &&
+			style.visibility !== 'hidden' &&
+			style.opacity !== '0' &&
+			rect.bottom > 0 &&
+			rect.right > 0 &&
+			rect.top < window.innerHeight &&
+			rect.left < window.innerWidth
+		);
+	}
+
+	/*setTimeout(() => {
+	let link = '${e://Field/link}';
+		if(link == "LIVE"){
+		document.querySelector(".body").style.display = "none";
+	}
+
+  }, 150);*/
+	let link = '${e://Field/link}';
+	if(link == "LIVE"){
+		document.querySelector("body").style.display = "none";
+	}
+
+});
+
+Qualtrics.SurveyEngine.addOnReady(function() {
+	/*Coloque seu JavaScript aqui para ser executado quando a página estiver totalmente exibida*/
+	let link = '${e://Field/link}';
+	if(link == "LIVE"){
+		document.querySelector('#NextButton').click();
+	}
+});
+Qualtrics.SurveyEngine.addOnUnload(function() {
+	let link = '${e://Field/link}';
+	if(link == "LIVE"){
+		document.querySelector('body').show();
+	}
+});
+</code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script marcar opciones según múltiples preguntas previas -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700 mb-2">
+            Marcar opciones según múltiples preguntas previas y avanzar
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para marcar automáticamente opciones según la selección de
+            varias preguntas previas y avanzar si el link es LIVE.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"
+          ><code>Qualtrics.SurveyEngine.addOnload(function()
+{
+	let link = '${e://Field/link}';
+	if(link=='LIVE'){
+		document.querySelector('body').hide();
+	}
+});
+Qualtrics.SurveyEngine.addOnReady(function()
+{
+	jQuery("input.checkbox").prop("checked", false);
+	function marcar(cod) {
+		if (jQuery('.SingleAnswer').length == 0) {
+			jQuery('.MultipleAnswer').each(function () {
+				if (jQuery(this).prop("id").split("-")[1] == cod)
+				 jQuery(this).click();
+			})
+		} else {
+			jQuery('.SingleAnswer').each(function () {
+				if (jQuery(this).prop("id").split("-")[1] == cod)
+				 jQuery(this).click();
+			})
+		}
+	}
+
+	let m2_1 = "${q://QID60/SelectedChoicesRecode}".split(",").map(Number);
+	let m2_2 = "${q://QID61/SelectedChoicesRecode}".split(",").map(Number);
+	let m2_3 ="${q://QID62/SelectedChoicesRecode}".split(",").map(Number);
+	let m2_4 ="${q://QID63/SelectedChoicesRecode}".split(",").map(Number);
+	let m2_5 ="${q://QID64/SelectedChoicesRecode}".split(",").map(Number);
+	let m2_6 ="${q://QID66/SelectedChoicesRecode}".split(",").map(Number);
+	let m2_7 ="${q://QID67/SelectedChoicesRecode}".split(",").map(Number);
+	let m2_8 ="${q://QID68/SelectedChoicesRecode}".split(",").map(Number);
+	
+	let vet = []
+	vet.push(...m2_1,...m2_2,...m2_3,...m2_4,...m2_5,...m2_6,...m2_7,...m2_8)
+	
+	for(let i = 0; i<= vet.length; i++){
+		if(vet[i] != 0 && vet[i] != 99){
+			marcar(vet[i])
+		}
+	}
+
+	let link = '${e://Field/link}';
+	if(link=='LIVE'){
+		document.querySelector('#NextButton').click();
+	}
+});
+Qualtrics.SurveyEngine.addOnUnload(function()
+{
+	let link = '${e://Field/link}';
+	if(link=='LIVE'){
+		document.querySelector('body').show();
+	}
+});
+</code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script filtro por cantidad de opciones usadas -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700 mb-2">
+            Filtro por cantidad de opciones usadas (Embedded Data)
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para contar cuántas opciones distintas a "Nunca lo uso" están
+            seleccionadas y guardar el resultado en Embedded Data.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"
+          ><code>Qualtrics.SurveyEngine.addOnReady(function () {
+    function calcularFiltro() {
+        let usados = 0;
+
+        jQuery('#QID9 .ChoiceRow').each(function () {
+            const opciones = jQuery(this).find('input[type="radio"]');
+            // Contar si alguna opción distinta a "Nunca lo uso" está seleccionada
+            for (let i = 1; i < opciones.length; i++) {
+                if (opciones.eq(i).is(':checked')) {
+                    usados++;
+                    break;
+                }
+            }
+        });
+
+        // Guardar resultado en Embedded Data
+        Qualtrics.SurveyEngine.setEmbeddedData("FiltroValidado", usados >= 2 ? "noFiltra" : "filtra");
+    }
+
+    jQuery('#QID9 input[type="radio"]').on('change', calcularFiltro);
+});
+</code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script selección automática por región -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700 mb-2">
+            Selección automática por región seleccionada
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para marcar automáticamente una opción según la región
+            seleccionada en una pregunta previa. Si la opción "1" está
+            seleccionada, marca la opción 1; si no, marca la opción 2. Avanza
+            automáticamente si el link es LIVE.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"
+          ><code>Qualtrics.SurveyEngine.addOnReady(function() {
+            let element = document.querySelectorAll('span label');
+            function marcar(cod){
+                element[cod - 1].click();
+            }
+            let RegionRaw = '${q://QID3/SelectedChoicesRecode}';
+            let regiones = RegionRaw.split(","); // convierte en array
+            console.log("Regiones seleccionadas:", regiones);
+            if (regiones.includes("1")) {
+                marcar(1); // Marca opción 1 si está el valor 1
+            } else {
+                marcar(2); // Si NO está, marca opción 2
+            }
+            let link = '${e://Field/link}';
+            if (link === 'LIVE') {
+                document.querySelector('#NextButton').click();
+            }
+        });
+        </code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script mostrar edad mayor en texto de pregunta -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700 mb-2">
+            Mostrar edad de hijo/a mayor en el texto de la pregunta
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para reemplazar automáticamente el marcador
+            <b>[Ingresar edad de hijo/a mayor según C13]</b> en el texto de la
+            pregunta por la edad mayor registrada en el Embedded Data
+            <b>valoresQ26</b>.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"
+          ><code>Qualtrics.SurveyEngine.addOnReady(function() {
+            // Obtenemos los valores de las edades guardadas en el Embedded Data
+            let valoresRaw = "${e://Field/valoresQ26}".trim();
+            let valores = valoresRaw ? valoresRaw.split(',').map(v => parseInt(v, 10)) : [];
+            // Encontrar el mayor valor válido
+            let edadMayor = Math.max(...valores.filter(v => !isNaN(v)));
+            // Reemplazar el texto marcador [Ingresar edad de hijo/a mayor según C13]
+            let container = this.getQuestionTextContainer();
+            container.innerHTML = container.innerHTML.replace("[Ingresar edad de hijo/a mayor según C13]", edadMayor);
+        });
+        </code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script validación de edades y filtrado automático -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700 mb-2">
+            Validación de edades ordenadas y filtrado automático
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para validar que las edades ingresadas estén ordenadas de
+            menor a mayor y guardar los valores en Embedded Data. Además, marca
+            automáticamente la opción "Filtra" o "No filtra" según si hay al
+            menos una edad entre 8 y 17 años.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"
+          ><code>Qualtrics.SurveyEngine.addOnReady(function() {
+            const inputs = this.getQuestionContainer().querySelectorAll('input[type="text"]');
+            const nextButton = document.querySelector('#NextButton');
+            inputs.forEach(input => {
+                input.addEventListener('input', validate);
+            });
+            function validate() {
+                let valid = true;
+                let prev = -Infinity;
+                for (let i = 0; i < inputs.length; i++) {
+                    let value = parseInt(inputs[i].value.trim(), 10);
+                    if (isNaN(value)) {
+                        valid = false;
+                        inputs[i].style.border = "2px solid red";
+                        continue;
+                    }
+                    if (value <= prev) {
+                        valid = false;
+                        inputs[i].style.border = "2px solid red";
+                    } else {
+                        inputs[i].style.border = "1px solid black";
+                    }
+                    prev = value;
+                }
+                nextButton.disabled = !valid;
+            }
+        });
+        Qualtrics.SurveyEngine.addOnPageSubmit(function() {
+            const inputs = this.getQuestionContainer().querySelectorAll('input[type="text"]');
+            let valores = [];
+            inputs.forEach(input => {
+                if (input.value.trim() !== "") {
+                    valores.push(input.value.trim());
+                }
+            });
+            Qualtrics.SurveyEngine.setEmbeddedData('valoresQ26', valores.join(','));
+        });
+
+        Qualtrics.SurveyEngine.addOnReady(function() {
+            const radios = this.getQuestionContainer().querySelectorAll('input[type="radio"]');
+            let valoresRaw = "${e://Field/valoresQ26}".trim();
+            console.log("Valores leídos:", valoresRaw);
+            let valores = valoresRaw ? valoresRaw.split(',').map(v => parseInt(v, 10)) : [];
+            let hayValido = false;
+            for (let i = 0; i < valores.length; i++) {
+                let val = valores[i];
+                if (!isNaN(val) && val >= 8 && val <= 17) {
+                    hayValido = true;
+                    break;
+                }
+            }
+            if (hayValido) {
+                radios[1].click(); // No filtra
+                console.log("Marcado: NO FILTRA");
+            } else {
+                radios[0].click(); // Filtra
+                console.log("Marcado: FILTRA");
+            }
+        });
+        </code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script para personalizar mensaje de error global -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700 mb-2">
+            Personalización de mensaje de error global
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para reemplazar el mensaje de error global de Qualtrics por
+            uno personalizado. Útil para mostrar mensajes más claros al usuario
+            cuando la respuesta no cumple los criterios.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"
+          ><code>Qualtrics.SurveyEngine.addOnReady(function () {
+            function reemplazarMensajeGlobal() {
+                const errores = document.querySelectorAll('.ValidationError');
+                errores.forEach(err => {
+                    const texto = err.innerText.trim();
+                    if (texto === "Desculpe, a sua resposta não corresponde aos critérios especificados para esta pergunta.") {
+                        err.innerText = "Sua resposta precisa ter, pelo menos, 3 caracteres.";
+                    }
+                });
+            }
+            // Repetimos por si Qualtrics lo reemplaza varias veces
+            for (let i = 0; i < 20; i++) {
+                setTimeout(reemplazarMensajeGlobal, 150 * i);
+            }
+            // También agregamos observer por si se vuelve a renderizar
+            const observer = new MutationObserver(() => {
+                reemplazarMensajeGlobal();
+            });
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+                characterData: true
+            });
+        });
+        </code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script para limitar selección de checkboxes en una fila de tabla -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700 mb-2">
+            Limitar selección de checkboxes en una fila de tabla
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para que, en una pregunta tipo matriz, solo se pueda
+            seleccionar una casilla por fila. Si ya hay una opción marcada en la
+            fila, las demás se deshabilitan hasta que se desmarque la
+            seleccionada.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"
+          ><code>Qualtrics.SurveyEngine.addOnReady(function() {
+    // Buscar el &lt;th&gt; por atributo id (safe con tildes) y tomar su &lt;tr&gt; padre
+    var $row = jQuery("th[id='header~QID42~1']").closest("tr");
+
+    // Todos los checkboxes dentro de esa fila
+    var $checkboxes = $row.find("input[type='checkbox']");
+
+    // Manejar cambios (delegado por si Qualtrics re-renderiza)
+    $row.on("change", "input[type='checkbox']", function() {
+        var checkedCount = $checkboxes.filter(":checked").length;
+
+        if (checkedCount >= 1) {
+            // Si hay al menos uno marcado -> deshabilitar los no marcados
+            $checkboxes.not(":checked").prop("disabled", true);
+        } else {
+            // Si no hay marcados -> habilitar todos
+            $checkboxes.prop("disabled", false);
+        }
+    });
+
+    // Estado inicial (por si ya hay alguno marcado al cargar la pregunta)
+    if ($checkboxes.filter(":checked").length >= 1) {
+        $checkboxes.not(":checked").prop("disabled", true);
+    } else {
+        $checkboxes.prop("disabled", false);
+    }
+});
+</code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
+
+        <!-- Tarjeta de Script bloqueo temporal del botón Siguiente -->
+        <div class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400">
+          <h3 class="text-lg font-semibold text-blue-700 mb-2">
+            Bloquear botón "Siguiente" por N segundos
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Script para deshabilitar el botón "Siguiente" durante 10 segundos (evita avance accidental inmediato). Muestra cuenta regresiva en el propio botón.
+          </p>
+          <pre class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"><code>Qualtrics.SurveyEngine.addOnReady(function () {
+
+    // Obtener botón Next
+    var nextButton = document.querySelector('#NextButton');
+
+    // Deshabilitar botón
+    nextButton.disabled = true;
+    nextButton.style.opacity = "0.5"; // opcional, efecto visual
+
+    // Tiempo bloqueado (10 segundos)
+    var delay = 10;
+
+    // Timer visual opcional
+    nextButton.value = "Espera " + delay + " segundos...";
+
+    // Cuenta regresiva
+    var countdown = setInterval(function () {
+        delay--;
+
+        nextButton.value = "Espera " + delay + " segundos...";
+
+        if (delay <= 0) {
+            clearInterval(countdown);
+            nextButton.disabled = false;
+            nextButton.style.opacity = "1";
+            nextButton.value = "Siguiente";
+        }
+
+    }, 1000);
+});</code></pre>
           <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
             Insertar en mi encuesta
           </button>
@@ -506,24 +1115,50 @@ Qualtrics.SurveyEngine.addOnUnload(function()
     </section>
 
     <script>
-// Función para copiar el código de la tarjeta al hacer clic en "Insertar en mi encuesta"
-document.querySelectorAll('.card-auto').forEach(card => {
-  const btn = card.querySelector('button');
-  const codeBlock = card.querySelector('pre code');
-  if (btn && codeBlock) {
-    btn.addEventListener('click', () => {
-      // Elimina espacios y saltos de línea innecesarios al inicio y final
-      const code = codeBlock.innerText.trim();
-      // Copia al portapapeles
-      navigator.clipboard.writeText(code).then(() => {
-        btn.textContent = '¡Copiado!';
-        setTimeout(() => {
-          btn.textContent = 'Insertar en mi encuesta';
-        }, 1500);
+      // Función para copiar el código de la tarjeta al hacer clic en "Insertar en mi encuesta"
+      document.querySelectorAll(".card-auto").forEach((card) => {
+        const btn = card.querySelector("button");
+        const codeBlock = card.querySelector("pre code");
+        if (btn && codeBlock) {
+          btn.addEventListener("click", () => {
+            // Elimina espacios y saltos de línea innecesarios al inicio y final
+            const code = codeBlock.innerText.trim();
+            // Copia al portapapeles
+            navigator.clipboard.writeText(code).then(() => {
+              btn.textContent = "¡Copiado!";
+              setTimeout(() => {
+                btn.textContent = "Insertar en mi encuesta";
+              }, 1500);
+            });
+          });
+        }
       });
-    });
-  }
-});
-</script>
+    </script>
+    <!-- Footer global -->
+    <footer class="bg-white border-t border-blue-100 mt-10 py-4 w-full">
+      <div
+        class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 gap-2 text-sm"
+      >
+        <div class="flex items-center gap-2">
+          <img
+            src="../Assets/logo_final..svg"
+            alt="Logo Offerwise"
+            style="height: 28px; width: auto"
+          />
+          <span class="text-blue-700 font-semibold">Asistente Qualtrics</span>
+        </div>
+        <div class="text-gray-500">
+          © 2025 Offerwise. Todos los derechos reservados.
+        </div>
+        <div class="text-gray-400">
+          Contacto:
+          <a
+            href="mailto:soporte@offerwise.com"
+            class="text-blue-500 hover:underline"
+            >soporte@offerwise.com</a
+          >
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

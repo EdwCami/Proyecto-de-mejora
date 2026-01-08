@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejemplos de código</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css/ejemplo.css" />
+     <link rel="icon" type="image/jpeg" href="../Assets/offerwise_logo.jpeg" />
+  </head>
+  <body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col">
+    <nav class="bg-white shadow-md p-4 sticky top-0 z-50">
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <img src="../Assets/logo_final..svg" alt="Logo Offerwise" style="height:40px; width:auto;" />
+          <h1 class="text-xl font-bold text-blue-600">Asistente Qualtrics</h1>
+        </div>
+        <ul class="flex space-x-6 text-sm font-medium">
+          <li><a href="index.html" class="hover:text-blue-500">Inicio</a></li>
+          <li><a href="guia.html" class="hover:text-blue-500">Guía paso a paso</a></li>
+          <li><a href="automatizaciones.html" class="hover:text-blue-500">Automatizaciones</a></li>
+          <li><a href="ejemplos.html" class="hover:text-blue-500">Ejemplos</a></li>
+          <li><a href="soporte.html" class="hover:text-blue-500">Soporte</a></li>
+        </ul>
+      </div>
+    </nav>
+    <main class="flex-1 mx-auto p-6 container-form">
+      <!-- Formulario para agregar ejemplos -->
+      <form id="form-ejemplo" class="bg-white rounded-lg shadow-md border border-blue-100 p-6 mb-8 md:flex-row gap-4 items-end">
+        <div class="flex-1">
+          <label class="block font-semibold mb-1 text-blue-700">Título del ejemplo</label>
+          <input type="text" id="titulo-ejemplo" class="w-full border border-blue-200 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="Ej: Validación de edad" required />
+        </div>
+        <div class="flex-1">
+          <label class="block font-semibold mb-1 text-blue-700">Descripción</label>
+          <input type="text" id="descripcion-ejemplo" class="w-full border border-blue-200 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="Describe brevemente la función del script" required />
+        </div>
+        <div class="flex-1">
+          <label class="block font-semibold mb-1 text-blue-700">Código del script</label>
+          <textarea id="codigo-ejemplo" class="w-full border border-blue-200 rounded px-3 py-2 h-24 font-mono focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="Pega aquí tu código..." required></textarea>
+        </div>
+        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded font-semibold hover:bg-blue-700 transition">Agregar ejemplo</button>
+      </form>
+      <div id="ejemplos-codigo" class="grid gap-6 md:grid-cols-2">
+        <!-- Aquí se agregarán las tarjetas de ejemplo de código -->
+      </div>
+    </main>
+    <footer class="bg-white border-t border-blue-100 mt-10 py-4 w-full">
+      <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 gap-2 text-sm">
+        <div class="flex items-center gap-2">
+          <img src="../Assets/logo_final..svg" alt="Logo Offerwise" style="height: 28px; width: auto;" />
+          <span class="text-blue-700 font-semibold">Asistente Qualtrics</span>
+        </div>
+        <div class="text-gray-500">© 2025 Offerwise. Todos los derechos reservados.</div>
+        <div class="text-gray-400">
+          Contacto: <a href="mailto:soporte@offerwise.com" class="text-blue-500 hover:underline">soporte@offerwise.com</a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const form = document.getElementById('form-ejemplo');
+      const lista = document.getElementById('ejemplos-codigo');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const titulo = document.getElementById('titulo-ejemplo').value.trim();
+        const descripcion = document.getElementById('descripcion-ejemplo').value.trim();
+        const codigo = document.getElementById('codigo-ejemplo').value.trim();
+        if (!titulo || !codigo || !descripcion) return;
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-lg shadow-lg border border-blue-200 p-4 flex flex-col';
+        card.innerHTML = `
+          <h2 class='font-bold text-blue-700 mb-1'>${titulo}</h2>
+          <p class='mb-2 text-gray-700'>${descripcion}</p>
+          <pre class='bg-gray-100 rounded p-2 text-sm overflow-x-auto mb-2'><code>${codigo.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</code></pre>
+          <button class='bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 self-end copiar-btn'>Copiar código</button>
+        `;
+        card.querySelector('.copiar-btn').addEventListener('click', function() {
+          navigator.clipboard.writeText(codigo);
+          this.textContent = '¡Copiado!';
+          setTimeout(()=>{ this.textContent = 'Copiar código'; }, 1200);
+        });
+        lista.prepend(card);
+        form.reset();
+      });
+    </script>
+  </body>
+</html>
