@@ -49,6 +49,51 @@
         Scripts reutilizables para mejorar la eficiencia de tus encuestas.
       </p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Tarjeta nueva: Redirección y control LIVE (primera) -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
+          <h3 class="text-lg font-semibold text-blue-700">
+            Redirección y control LIVE
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Redirige cuando el parámetro <strong>link</strong> es
+            <em>LIVE</em> y oculta/mostrar el body según corresponda.
+          </p>
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto"
+          ><code>Qualtrics.SurveyEngine.addOnload(function () {
+    let link = '${e://Field/link}';
+    if (link == 'LIVE') {
+        jQuery('body').hide();
+    }
+});
+
+Qualtrics.SurveyEngine.addOnReady(function () {
+    let link = '${e://Field/link}';
+    if (link == "") {
+        jQuery('#NextButton').hide();
+    }
+    if (link == 'LIVE') {
+        let owid = "${e://Field/owid}";
+        Qualtrics.SurveyEngine.setEmbeddedData("term", "BM01");
+        window.location.href = "https://www.surveytaking.com/processsurvey.php?status=screened&owid=" + owid;
+        //jQuery('#NextButton').click();
+    }
+});
+
+Qualtrics.SurveyEngine.addOnUnload(function () {
+    let link = '${e://Field/link}';
+    if (link == 'LIVE') {
+        jQuery('body').show();
+    }
+});</code></pre>
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Insertar en mi encuesta
+          </button>
+        </div>
         <!-- Tarjeta de Script parametro genero -->
         <div
           class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
@@ -1070,14 +1115,20 @@ Qualtrics.SurveyEngine.addOnUnload(function()
         </div>
 
         <!-- Tarjeta de Script bloqueo temporal del botón Siguiente -->
-        <div class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400">
+        <div
+          class="bg-white rounded-2xl shadow-2xl border border-blue-200 p-4 h-80 overflow-y-auto flex flex-col card-auto transition-shadow duration-200 hover:shadow-3xl hover:border-blue-400"
+        >
           <h3 class="text-lg font-semibold text-blue-700 mb-2">
             Bloquear botón "Siguiente" por N segundos
           </h3>
           <p class="text-sm text-gray-600 mb-2">
-            Script para deshabilitar el botón "Siguiente" durante 10 segundos (evita avance accidental inmediato). Muestra cuenta regresiva en el propio botón.
+            Script para deshabilitar el botón "Siguiente" durante 10 segundos
+            (evita avance accidental inmediato). Muestra cuenta regresiva en el
+            propio botón.
           </p>
-          <pre class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"><code>Qualtrics.SurveyEngine.addOnReady(function () {
+          <pre
+            class="bg-gray-100 p-2 rounded text-sm overflow-auto mt-2"
+          ><code>Qualtrics.SurveyEngine.addOnReady(function () {
 
     // Obtener botón Next
     var nextButton = document.querySelector('#NextButton');
@@ -1107,7 +1158,9 @@ Qualtrics.SurveyEngine.addOnUnload(function()
 
     }, 1000);
 });</code></pre>
-          <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+          <button
+            class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
             Insertar en mi encuesta
           </button>
         </div>
